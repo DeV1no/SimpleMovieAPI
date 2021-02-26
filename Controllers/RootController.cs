@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using MoviesAPI.DTOs;
+using MoviesAPI.Helpers;
 
 namespace MoviesAPI.Controllers
 {
     [ApiController]
     [Route("api")]
+    [HttpHeaderIsPresent("x-version", "1")]
+
     public class RootController : ControllerBase
     {
-        [HttpGet(Name = "getRoot")]
+    //    [HttpGet(Name = "getRoot")]
         public ActionResult<IEnumerable<Link>> Get()
         {
             List<Link> links = new List<Link>();
