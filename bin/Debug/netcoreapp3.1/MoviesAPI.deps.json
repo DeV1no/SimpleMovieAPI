@@ -31,6 +31,7 @@
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "3.1.0",
           "Microsoft.EntityFrameworkCore": "3.1.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.0",
+          "Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite": "3.1.0",
           "Microsoft.EntityFrameworkCore.Tools": "3.1.0",
           "Swashbuckle.AspNetCore": "6.0.7",
           "Two.AspNetCore.SpaServices.StaticFiles": "0.9.1",
@@ -215,7 +216,7 @@
           "System.Linq.Expressions.Reference": "4.2.2.0",
           "System.Linq.Parallel": "4.0.4.0",
           "System.Linq.Queryable": "4.0.4.0",
-          "System.Memory": "4.2.1.0",
+          "System.Memory.Reference": "4.2.1.0",
           "System.Net": "4.0.0.0",
           "System.Net.Http": "4.2.2.0",
           "System.Net.HttpListener": "4.0.2.0",
@@ -974,6 +975,21 @@
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
         }
       },
+      "Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite/3.1.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.0",
+          "NetTopologySuite.IO.SqlServerBytes": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite.dll": {
+            "assemblyVersion": "3.1.0.0",
+            "fileVersion": "3.100.19.56505"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite.dll": {}
+        }
+      },
       "Microsoft.EntityFrameworkCore.Tools/3.1.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "3.1.0"
@@ -1238,6 +1254,34 @@
         "dependencies": {
           "System.Security.AccessControl": "4.5.0",
           "System.Security.Principal.Windows": "4.5.0"
+        }
+      },
+      "NetTopologySuite/2.0.0": {
+        "dependencies": {
+          "System.Memory": "4.5.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/NetTopologySuite.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/NetTopologySuite.dll": {}
+        }
+      },
+      "NetTopologySuite.IO.SqlServerBytes/2.0.0": {
+        "dependencies": {
+          "NetTopologySuite": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/NetTopologySuite.IO.SqlServerBytes.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/NetTopologySuite.IO.SqlServerBytes.dll": {}
         }
       },
       "Newtonsoft.Json/12.0.2": {
@@ -1703,6 +1747,7 @@
           "System.Threading": "4.3.0"
         }
       },
+      "System.Memory/4.5.3": {},
       "System.Net.NameResolution/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.0.0",
@@ -3376,7 +3421,7 @@
         },
         "compileOnly": true
       },
-      "System.Memory/4.2.1.0": {
+      "System.Memory.Reference/4.2.1.0": {
         "compile": {
           "System.Memory.dll": {}
         },
@@ -4399,6 +4444,13 @@
       "path": "microsoft.entityframeworkcore.sqlserver/3.1.0",
       "hashPath": "microsoft.entityframeworkcore.sqlserver.3.1.0.nupkg.sha512"
     },
+    "Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DFAsGRIIYjoreSWwzgACbxktL/qF/x/ZfTuxbpQJZkw9uMU7Zpr3bXQ6i3yyteYg5Y/pW2807o7P00qtH4Xrxg==",
+      "path": "microsoft.entityframeworkcore.sqlserver.nettopologysuite/3.1.0",
+      "hashPath": "microsoft.entityframeworkcore.sqlserver.nettopologysuite.3.1.0.nupkg.sha512"
+    },
     "Microsoft.EntityFrameworkCore.Tools/3.1.0": {
       "type": "package",
       "serviceable": true,
@@ -4671,6 +4723,20 @@
       "sha512": "sha512-+FWlwd//+Tt56316p00hVePBCouXyEzT86Jb3+AuRotTND0IYn0OO3obs1gnQEs/txEnt+rF2JBGLItTG+Be6A==",
       "path": "microsoft.win32.registry/4.5.0",
       "hashPath": "microsoft.win32.registry.4.5.0.nupkg.sha512"
+    },
+    "NetTopologySuite/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3ajBClEI9wx2/DjjGmV52sHW1m52vLg8sdz1pJbTf5ySj1X90qehQs3v1DRwGo0F8UKj/Z2SjNhRN/6LroAkqg==",
+      "path": "nettopologysuite/2.0.0",
+      "hashPath": "nettopologysuite.2.0.0.nupkg.sha512"
+    },
+    "NetTopologySuite.IO.SqlServerBytes/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TuyMB0VSlRJx86UrWeQ+SGgOMudvhIL1qJJdWJw78nWsXIzKRP4ooQAhhhCCH7n8q1lvd0/NW3ByaLlHxxNSPQ==",
+      "path": "nettopologysuite.io.sqlserverbytes/2.0.0",
+      "hashPath": "nettopologysuite.io.sqlserverbytes.2.0.0.nupkg.sha512"
     },
     "Newtonsoft.Json/12.0.2": {
       "type": "package",
@@ -5063,6 +5129,13 @@
       "sha512": "sha512-PGKkrd2khG4CnlyJwxwwaWWiSiWFNBGlgXvJpeO0xCXrZ89ODrQ6tjEWS/kOqZ8GwEOUATtKtzp1eRgmYNfclg==",
       "path": "system.linq.expressions/4.3.0",
       "hashPath": "system.linq.expressions.4.3.0.nupkg.sha512"
+    },
+    "System.Memory/4.5.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3oDzvc/zzetpTKWMShs1AADwZjQ/36HnsufHRPcOjyRAAMLDlu2iD33MBI2opxnezcVUtXyqDXXjoFMOU9c7SA==",
+      "path": "system.memory/4.5.3",
+      "hashPath": "system.memory.4.5.3.nupkg.sha512"
     },
     "System.Net.NameResolution/4.3.0": {
       "type": "package",
@@ -6368,7 +6441,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "System.Memory/4.2.1.0": {
+    "System.Memory.Reference/4.2.1.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MoviesAPI.Entities
 {
-    public class Genre
+    public class Genre:IId
     {
         [Key] public int Id { get; set; }
 

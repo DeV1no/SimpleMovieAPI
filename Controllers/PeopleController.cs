@@ -16,7 +16,7 @@ namespace MoviesAPI.Controllers
 {
     [ApiController]
     [Route("Api/people")]
-    public class PeopleController : ControllerBase
+    public class PeopleController : CustomBaseController
     {
         private ApplicationDbContext _context;
         private readonly IMapper _mapper;
@@ -24,6 +24,7 @@ namespace MoviesAPI.Controllers
         private readonly IFileStorageService _fileStorageService;
 
         public PeopleController(ApplicationDbContext context, IMapper mapper, IFileStorageService fileStorageService)
+            : base(context, mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -33,16 +34,17 @@ namespace MoviesAPI.Controllers
         [HttpGet(Name = "getPeople")]
         public async Task<ActionResult<List<PersonDTO>>> Get([FromQuery] PaginationDTO paginationDto)
         {
-            var queryable = _context.People.AsQueryable();
+            /*var queryable = _context.People.AsQueryable();
             await HttpContext.InsertPaginationParametesInResponse(queryable, paginationDto.RecordsPerPage);
             var people = await queryable.Paginate(paginationDto).ToListAsync();
-            return _mapper.Map<List<PersonDTO>>(people);
+            return _mapper.Map<List<PersonDTO>>(people);*/
+            return await Get<Person, PersonDTO>(paginationDto);
         }
 
         [HttpGet("{id}", Name = "getPerson")]
         public async Task<ActionResult<PersonDTO>> Get(int id)
         {
-            var person = await _context.People.FirstOrDefaultAsync(p => p.Id == id);
+            /*var person = await _context.People.FirstOrDefaultAsync(p => p.Id == id);
             if (person == null)
             {
                 return NotFound();
@@ -50,7 +52,8 @@ namespace MoviesAPI.Controllers
             else
             {
                 return _mapper.Map<PersonDTO>(person);
-            }
+            }*/
+            return await Get<Person, PersonDTO>(id);
         }
 
         [HttpPost]
@@ -111,7 +114,8 @@ namespace MoviesAPI.Controllers
         [HttpPatch("{id}")]
         public async Task<ActionResult> Patch(int id, [FromBody] JsonPatchDocument<PersonPatchDTO> patchDocument)
         {
-            if (patchDocument == null)
+            return await Patch<Person, PersonPatchDTO>(id, patchDocument);
+            /*if (patchDocument == null)
             {
                 return BadRequest();
             }
@@ -133,13 +137,13 @@ namespace MoviesAPI.Controllers
 
             _mapper.Map(entityDTO, entityFromDB);
             await _context.SaveChangesAsync();
-            return NoContent();
+            return NoContent();*/
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var exists = await _context.People.AnyAsync(p => p.Id == id);
+            /*var exists = await _context.People.AnyAsync(p => p.Id == id);
             if (!exists)
             {
                 return NotFound();
@@ -147,7 +151,8 @@ namespace MoviesAPI.Controllers
 
             _context.Remove(new Person() {Id = id});
             await _context.SaveChangesAsync();
-            return NoContent();
+            return NoContent();*/
+            return await Delete<Person>(id);
         }
     }
 }

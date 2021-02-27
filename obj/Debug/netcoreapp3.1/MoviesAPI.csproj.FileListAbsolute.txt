@@ -73,3 +73,7 @@
 /home/dev1/Desktop/dotNet/MoviesAPI/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.Swagger.dll
 /home/dev1/Desktop/dotNet/MoviesAPI/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerGen.dll
 /home/dev1/Desktop/dotNet/MoviesAPI/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerUI.dll
+/home/dev1/Desktop/dotNet/MoviesAPI/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite.dll
+/home/dev1/Desktop/dotNet/MoviesAPI/bin/Debug/netcoreapp3.1/NetTopologySuite.dll
+/home/dev1/Desktop/dotNet/MoviesAPI/bin/Debug/netcoreapp3.1/NetTopologySuite.IO.SqlServerBytes.dll
+/home/dev1/Desktop/dotNet/MoviesAPI/obj/Debug/netcoreapp3.1/EFCoreSqlServerNetTopologySuite.cs

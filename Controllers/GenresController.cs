@@ -17,27 +17,29 @@ namespace MoviesAPI.Controllers
 {
     [Route("api/genres")]
     [ApiController]
-    public class GenresController : ControllerBase
+    public class GenresController : CustomBaseController
     {
         private ApplicationDbContext _context;
         private readonly IMapper _mapper;
 
         public GenresController(ApplicationDbContext context, IMapper mapper)
+            : base(context, mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
         [HttpGet(Name = "getGenres")] // api/genres
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<List<GenreDTO>>> Get()
         {
-            var genres = await _context.Genres.AsNoTracking().ToListAsync();
+            return await Get<Genre, GenreDTO>();
+            /*var genres = await _context.Genres.AsNoTracking().ToListAsync();
             var genresDtOs = _mapper.Map<List<GenreDTO>>(genres);
             var resourceCollection = new ResourceCollection<GenreDTO>(genresDtOs);
           //  resourceCollection.Links.Add(new Link(Url.Action("getGenres"),rel:"self",method:"GET"));
             genresDtOs.ForEach(genre => GenerateALinks(genre));
-            return genresDtOs;
+            return genresDtOs;*/
         }
 
         private void GenerateALinks(GenreDTO genreDto)
@@ -49,9 +51,9 @@ namespace MoviesAPI.Controllers
         }
 
         [HttpGet("{Id:int}", Name = "getGenre")] // api/genres/example
-        public async Task<ActionResult<GenreDTO>> Get(int Id)
+        public async Task<ActionResult<GenreDTO>> Get(int id)
         {
-            var genre = await _context.Genres.FirstOrDefaultAsync(g => g.Id == Id);
+            /*var genre = await _context.Genres.FirstOrDefaultAsync(g => g.Id == Id);
 
             if (genre == null)
             {
@@ -59,34 +61,37 @@ namespace MoviesAPI.Controllers
             }
 
             var genreDTO = _mapper.Map<GenreDTO>(genre);
-            return genreDTO;
+            return genreDTO;*/
+            return await Get<Genre, GenreDTO>(id);
         }
 
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         public async Task<ActionResult> Post([FromBody] GenreCreationDTO genreCreationDto)
         {
-            var genre = _mapper.Map<Genre>(genreCreationDto);
+            return await Post<GenreCreationDTO, Genre, GenreDTO>(genreCreationDto, "getGenre");
+            /*var genre = _mapper.Map<Genre>(genreCreationDto);
             _context.Add(genre);
             await _context.SaveChangesAsync();
             var genreDTO = _mapper.Map<GenreDTO>(genre);
-            return new CreatedAtRouteResult("getGenre", new {genreDTO.Id}, genreDTO);
+            return new CreatedAtRouteResult("getGenre", new {genreDTO.Id}, genreDTO);*/
         }
 
         [HttpPut("{id}", Name = "putGenre")]
         public async Task<ActionResult> Put(int id, [FromBody] GenreCreationDTO genreCreationDto)
         {
-            var genre = _mapper.Map<Genre>(genreCreationDto);
+            return await Put<GenreCreationDTO, Genre>(id, genreCreationDto);
+            /*var genre = _mapper.Map<Genre>(genreCreationDto);
             genre.Id = id;
             _context.Entry(genre).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            return NoContent();
+            return NoContent();*/
         }
 
         [HttpDelete("{id}", Name = "deleteGenre")]
         public async Task<ActionResult> Delete(int id)
         {
-            var exist = await _context.Genres.AnyAsync(g => g.Id == id);
+            /*var exist = await _context.Genres.AnyAsync(g => g.Id == id);
             if (!exist)
             {
                 return NotFound();
@@ -96,7 +101,8 @@ namespace MoviesAPI.Controllers
                 _context.Remove(new Genre() {Id = id});
                 await _context.SaveChangesAsync();
                 return NoContent();
-            }
+            }*/
+            return await Delete<Genre>(id);
         }
     }
 }

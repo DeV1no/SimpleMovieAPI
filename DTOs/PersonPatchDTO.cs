@@ -1,9 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using MoviesAPI.Entities;
 
 namespace MoviesAPI.DTOs
 {
-    public class PersonPatchDTO
+    public class PersonPatchDTO : IId
     {
         public int Id { get; set; }
         [Required]

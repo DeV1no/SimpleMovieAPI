@@ -17,7 +17,7 @@ namespace MoviesAPI.Controllers
 {
     [ApiController]
     [Route("api/movies")]
-    public class MoviesController : ControllerBase
+    public class MoviesController : CustomBaseController
     {
         private ApplicationDbContext _context;
         private readonly IMapper _mapper;
@@ -26,6 +26,7 @@ namespace MoviesAPI.Controllers
 
         public MoviesController(ApplicationDbContext context, IMapper mapper,
             IFileStorageService fileStorageService)
+            : base(context, mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -178,6 +179,7 @@ namespace MoviesAPI.Controllers
         [HttpPatch("{id}")]
         public async Task<ActionResult> Patch(int id, [FromBody] JsonPatchDocument<MoviePatchDTO> patchDocument)
         {
+          //  return await Patch<Movie, MoviePatchDTO>(id, patchDocument);
             if (patchDocument == null)
             {
                 return BadRequest();
@@ -206,15 +208,7 @@ namespace MoviesAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var movieDB = await _context.Movies.AnyAsync(m => m.Id == id);
-            if (!movieDB)
-            {
-                return NotFound();
-            }
-
-            _context.Remove(new Movie() {Id = id});
-            await _context.SaveChangesAsync();
-            return NoContent();
+            return await Delete<Movie>(id);
         }
     }
 }
